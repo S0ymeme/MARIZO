@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluciones Digitales MARIZO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Enhanced Navigation Header */
+        .navbar {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e74c3c, #f39c12);
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-menu a:hover::before {
+            left: 100%;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="40%"><stop offset="0%" stop-color="%23fff" stop-opacity=".1"/><stop offset="100%" stop-color="%23fff" stop-opacity="0"/></radialGradient></defs><circle cx="10" cy="10" r="1" fill="url(%23a)"/><circle cx="30" cy="5" r="1" fill="url(%23a)"/><circle cx="50" cy="15" r="1" fill="url(%23a)"/><circle cx="70" cy="8" r="1" fill="url(%23a)"/><circle cx="90" cy="12" r="1" fill="url(%23a)"/></svg>') repeat;
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 0.9s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Introduction Section */
+        .intro {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+        }
+
+        .intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path d="M0,50 Q250,0 500,50 T1000,50 L1000,100 L0,100 Z" fill="%23ffffff" opacity="0.1"/></svg>') no-repeat center top;
+            background-size: cover;
+        }
+
+        .intro-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .intro h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            border-radius: 2px;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #5a6c7d;
+        }
+
+        .intro-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #3498db;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .highlight-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Enhanced Sections */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            border-radius: 2px;
+        }
+
+        /* Interactive Counter Section */
+        .stats {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+            counter-reset: number;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #3498db;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .about-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #3498db;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* Team Section - Updated for 2 members */
+        .team {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+            justify-items: center;
+        }
+
+        .team-member {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover .team-avatar {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .team-member h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .team-role {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .team-description {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .value-card:hover::before {
+            left: 100%;
+        }
+
+        .value-card:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.2);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(10px);
+        }
+
+        .contact-item span {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #3498db;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(44, 62, 80, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#inicio" class="logo">
+                <div class="logo-icon">⚡</div>
+                MARIZO
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#empresa">La Empresa</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#valores">Valores</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Soluciones Digitales MARIZO</h1>
+                <p>Especialistas en mantenimiento y reparación de electrodomésticos y dispositivos de cómputo</p>
+                <p><strong>"Soluciones precisas, con amigos expertos"</strong></p>
+                <div class="hero-buttons">
+                    <a href="#servicios" class="btn">Nuestros Servicios</a>
+                    <a href="#contacto" class="btn btn-secondary">Contactar Ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-target="3">0</div>
+                    <div class="stat-label">Meses de Garantía Mínima</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">Horas Máx. de Respuesta</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">% Profesionalismo</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-target="2">0</div>
+                    <div class="stat-label">Especialistas Fundadores</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="empresa" class="intro">
+        <div class="container">
+            <div class="intro-content">
+                <h2 class="fade-in">Bienvenidos a MARIZO</h2>
+                <p class="intro-text fade-in">
+                    En <strong>Soluciones Digitales MARIZO</strong>, somos una microempresa especializada que nació de la necesidad identificada en la comunidad local de contar con servicios accesibles y confiables de mantenimiento y reparación. Ubicados en la colonia Insurgentes, Tulancingo, Hidalgo, nos distinguimos por combinar la especialización técnica dual en electrodomésticos y dispositivos de cómputo con un enfoque personalizado y cercano.
+                </p>
+                <p class="intro-text fade-in">
+                    Nuestra empresa de autogestión está fundada por dos emprendedores innovadores que identificaron una oportunidad local específica y desarrollaron una propuesta de valor diferenciada basada en la metodología MARIZO de diagnóstico integral, garantías extendidas y un servicio de calidad superior al estándar del mercado.
+                </p>
+                
+                <div class="intro-highlights">
+                    <div class="highlight-card fade-in">
+                        <div class="highlight-icon">🎯</div>
+                        <h3>Especialización Dual</h3>
+                        <p>Únicos en la región con servicios especializados tanto en electrodomésticos como en dispositivos de cómputo</p>
+                    </div>
+                    <div class="highlight-card fade-in">
+                        <div class="highlight-icon">🏆</div>
+                        <h3>Metodología MARIZO</h3>
+                        <p>Sistema propio de diagnóstico integral que garantiza soluciones efectivas y duraderas</p>
+                    </div>
+                    <div class="highlight-card fade-in">
+                        <div class="highlight-icon">🤝</div>
+                        <h3>Empresa Local</h3>
+                        <p>Comprometidos con nuestra comunidad, ofreciendo servicios personalizados y de confianza</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="section about">
+        <div class="container">
+            <h2 class="section-title">Quiénes Somos</h2>
+            
+            <div class="about-grid">
+                <div class="about-card fade-in">
+                    <h3>🎯 Misión</h3>
+                    <p>Somos una empresa dedicada a proporcionar servicios de mantenimiento y reparación de alta calidad para electrodomésticos y equipos de cómputo, ofreciendo soluciones integrales y profesionales que garanticen la satisfacción y confianza de nuestros clientes en la región de Tulancingo.</p>
+                </div>
+                
+                <div class="about-card fade-in">
+                    <h3>🔮 Visión</h3>
+                    <p>Para 2028, ser la empresa líder en servicios técnicos especializados en la región de Tulancingo, reconocida por nuestra excelencia en el servicio, innovación tecnológica y compromiso con la satisfacción del cliente, expandiendo nuestra presencia a nivel regional.</p>
+                </div>
+                
+                <div class="about-card fade-in">
+                    <h3>📍 Alcance</h3>
+                    <p>Empresa local especializada en la colonia Insurgentes, Tulancingo, Hidalgo. Clasificada como microempresa del sector terciario, enfocada en atención directa y personalizada. Iniciamos como empresa individual de autogestión con gran potencial de crecimiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔧</div>
+                    <h3>Reparación de Electrodomésticos</h3>
+                    <p>Diagnóstico y reparación profesional de electrodomésticos con garantía extendida mínima de 3 meses. Utilizamos refacciones originales y metodologías estandarizadas.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">💻</div>
+                    <h3>Mantenimiento de Equipos de Cómputo</h3>
+                    <p>Servicios especializados en diagnóstico, reparación y optimización de dispositivos de cómputo. Incluye limpieza, actualización de software y hardware.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🛠️</div>
+                    <h3>Mantenimiento Preventivo</h3>
+                    <p>Programas de mantenimiento programado para extender la vida útil de sus equipos. Incluye servicios de seguimiento post-reparación y recomendaciones de uso.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">📋</div>
+                    <h3>Diagnóstico Técnico</h3>
+                    <p>Evaluación técnica profesional utilizando la metodología MARIZO. Presupuestos sin costo y explicación detallada del problema y solución propuesta.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏠</div>
+                    <h3>Servicio a Domicilio</h3>
+                    <p>Atención personalizada en su hogar o negocio. Tiempo máximo de respuesta inicial de 24 horas con seguimiento completo del proceso de reparación.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">💡</div>
+                    <h3>Consultoría Técnica</h3>
+                    <p>Asesoramiento especializado sobre compra de equipos, recomendaciones de uso y cuidado. Orientación para optimizar el rendimiento de sus dispositivos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section - Updated for 2 members only -->
+    <section id="equipo" class="section team">
+        <div class="container">
+            <h2 class="section-title">Nuestro Equipo Fundador</h2>
+            
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <div class="team-avatar">MF</div>
+                    <h3>Mauro Ricardo Franco Castelán</h3>
+                    <p class="team-role">Director General & Gerente Técnico</p>
+                    <p class="team-description">Especialista en programación y desarrollo tecnológico con dominio avanzado del idioma inglés. Se distingue por su excelente desempeño bajo presión y su liderazgo en innovación tecnológica. Responsable de la dirección estratégica y la supervisión técnica de la empresa.</p>
+                    <div style="margin-top: 1rem;">
+                        <strong>Fortalezas:</strong>
+                        <ul style="text-align: left; margin-top: 0.5rem; color: #5a6c7d;">
+                            <li>Dominio excepcional del inglés</li>
+                            <li>Amplio manejo de lenguajes de programación</li>
+                            <li>Excelente trabajo bajo presión</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="team-member fade-in">
+                    <div class="team-avatar">ES</div>
+                    <h3>Erick Ricardo Sóstenes González</h3>
+                    <p class="team-role">Gerente Administrativo & Comercial</p>
+                    <p class="team-description">Experto en adaptabilidad tecnológica con fuerte razonamiento analítico y lógico. Se caracteriza por su capacidad de aprendizaje rápido y gestión administrativa eficiente. Lidera las operaciones comerciales y administrativas de la empresa.</p>
+                    <div style="margin-top: 1rem;">
+                        <strong>Fortalezas:</strong>
+                        <ul style="text-align: left; margin-top: 0.5rem; color: #5a6c7d;">
+                            <li>Adaptabilidad tecnológica excepcional</li>
+                            <li>Razonamiento analítico y lógico</li>
+                            <li>Aprendizaje rápido y eficiente</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(52, 152, 219, 0.1); border-radius: 15px;" class="fade-in">
+                <h3 style="color: #2c3e50; margin-bottom: 1rem;">Empresa de Autogestión</h3>
+                <p style="font-size: 1.1rem; color: #5a6c7d; line-height: 1.6;">
+                    Como empresa de autogestión, ambos fundadores son también los trabajadores principales de MARIZO. Esta estructura nos permite ofrecer un servicio más personalizado y comprometido, donde cada cliente recibe la atención directa de los propietarios, garantizando la máxima calidad y responsabilidad en cada servicio.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section id="valores" class="section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Valores</h2>
+            
+            <div class="values-grid">
+                <div class="value-card fade-in">
+                    <div class="value-icon">🤝</div>
+                    <h3>Integridad</h3>
+                    <p>Honestidad en diagnósticos, transparencia en costos y ética profesional en todas nuestras operaciones. No recomendamos reparaciones innecesarias.</p>
+                </div>
+                
+                <div class="value-card fade-in">
+                    <div class="value-icon">🏆</div>
+                    <h3>Excelencia</h3>
+                    <p>Compromiso con la calidad, mejora continua y actualización constante en tecnologías. Buscamos superar las expectativas en cada servicio.</p>
+                </div>
+                
+                <div class="value-card fade-in">
+                    <div class="value-icon">📞</div>
+                    <h3>Responsabilidad</h3>
+                    <p>Cumplimiento estricto de tiempos, cuidado del medio ambiente y garantía sólida en nuestros servicios. Respaldamos nuestro trabajo.</p>
+                </div>
+                
+                <div class="value-card fade-in">
+                    <div class="value-icon">⭐</div>
+                    <h3>Profesionalismo</h3>
+                    <p>Personal capacitado, atención personalizada y soluciones efectivas y duraderas. Mantenemos los más altos estándares.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="section contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Contacto</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <div>
+                            <strong>Ubicación</strong><br>
+                            Colonia Insurgentes<br>
+                            Tulancingo de Bravo, Hidalgo, México
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <div>
+                            <strong>Email</strong><br>
+                            contacto@marizodigital.com<br>
+                            servicios@marizodigital.com
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <div>
+                            <strong>Teléfono</strong><br>
+                            +52 775 XXX XXXX<br>
+                            WhatsApp disponible
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span>🕒</span>
+                        <div>
+                            <strong>Horarios</strong><br>
+                            Lunes a Viernes: 8:00 AM - 6:00 PM<br>
+                            Sábados: 9:00 AM - 2:00 PM
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-info fade-in">
+                    <h3>¿Por qué elegirnos?</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem;">✅ <strong>Garantía extendida mínima de 3 meses</strong></li>
+                        <li style="margin-bottom: 1rem;">✅ <strong>Metodología MARIZO de diagnóstico integral</strong></li>
+                        <li style="margin-bottom: 1rem;">✅ <strong>Respuesta máxima de 24 horas</strong></li>
+                        <li style="margin-bottom: 1rem;">✅ <strong>Presupuestos sin costo</strong></li>
+                        <li style="margin-bottom: 1rem;">✅ <strong>Atención personalizada de los propietarios</strong></li>
+                        <li style="margin-bottom: 1rem;">✅ <strong>Seguimiento post-servicio</strong></li>
+                        <li style="margin-bottom: 1rem;">✅ <strong>Empresa local de confianza</strong></li>
+                        <li style="margin-bottom: 1rem;">✅ <strong>Especialización dual única en la región</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Soluciones Digitales MARIZO S. de R.L. Todos los derechos reservados.</p>
+            <p><em>"Soluciones precisas, con amigos expertos"</em></p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                Microempresa del sector terciario • Colonia Insurgentes, Tulancingo, Hidalgo
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <script>
+        // Enhanced Navigation functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animated counters
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Start counters when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.stat-number');
+                    counters.forEach(counter => {
+                        animateCounter(counter);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Enhanced header scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const scrollTop = document.getElementById('scrollTop');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                scrollTop.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top functionality
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Enhanced hover effects for service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+                this.style.boxShadow = '0 25px 50px rgba(0,0,0,0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // Interactive team member cards
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.03)';
+            });
+            
+            member.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+        });
+
+        // Add click effect to buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+
+    <style>
+        /* Additional styles for ripple effect */
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Loading styles */
+        body {
+            opacity: 0;
+        }
+    </style>
+</body>
+</html>
