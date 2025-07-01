@@ -16,6 +16,7 @@
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
+            opacity: 0;
         }
 
         .container {
@@ -282,6 +283,37 @@
             color: #667eea;
         }
 
+        /* Statistics Section */
+        .stats {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+            counter-reset: number;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
         /* Introduction Section */
         .intro {
             padding: 80px 0;
@@ -400,37 +432,6 @@
             height: 3px;
             background: linear-gradient(90deg, #e74c3c, #f39c12);
             border-radius: 2px;
-        }
-
-        /* Interactive Counter Section */
-        .stats {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 60px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #f39c12;
-            margin-bottom: 0.5rem;
-            counter-reset: number;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
         }
 
         /* About Section */
@@ -605,6 +606,231 @@
             color: #5a6c7d;
             line-height: 1.6;
         }
+
+        /* Organigrama Styles */
+        .orgchart-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .orgchart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .orgchart-header h3 {
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Organigrama Vertical */
+        .vertical-chart {
+            position: relative;
+            min-height: 500px;
+            overflow-x: auto;
+        }
+
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .org-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .org-box {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+            min-width: 200px;
+        }
+
+        .org-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .org-box.director {
+            border-color: #e74c3c;
+            background: linear-gradient(135deg, #fff, #fee);
+        }
+
+        .org-box.admin {
+            border-color: #f39c12;
+            background: linear-gradient(135deg, #fff, #fef9e7);
+        }
+
+        .org-box.commercial {
+            border-color: #27ae60;
+            background: linear-gradient(135deg, #fff, #eafaf1);
+        }
+
+        .org-box.technical {
+            border-color: #3498db;
+            background: linear-gradient(135deg, #fff, #ebf3fd);
+        }
+
+        .org-box.dept {
+            border-color: #9b59b6;
+            background: linear-gradient(135deg, #fff, #f4ecf7);
+            min-width: 150px;
+        }
+
+        .org-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .org-name {
+            color: #34495e;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+        }
+
+        .org-subtitle {
+            color: #7f8c8d;
+            font-size: 0.75rem;
+            font-style: italic;
+        }
+
+        /* Organigrama Horizontal */
+        .horizontal-chart {
+            overflow-x: auto;
+        }
+
+        .horizontal-row {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            min-width: 800px;
+            padding: 1rem;
+        }
+
+        .horizontal-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .horizontal-gerencias {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .horizontal-departments {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .dept-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .org-box.small {
+            min-width: 140px;
+            padding: 1rem;
+        }
+
+        .org-box.mini {
+            min-width: 100px;
+            padding: 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        /* Connection Lines */
+        .org-connections {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .connection-lines {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Leyenda */
+        .orgchart-legend {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .orgchart-legend h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .legend-items {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .legend-color.director { background: #e74c3c; }
+        .legend-color.admin { background: #f39c12; }
+        .legend-color.commercial { background: #27ae60; }
+        .legend-color.technical { background: #3498db; }
+        .legend-color.dept { background: #9b59b6; }
 
         /* Values Section */
         .values-grid {
@@ -785,6 +1011,31 @@
             .team-grid {
                 grid-template-columns: 1fr;
             }
+
+            .orgchart-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .org-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .horizontal-row {
+                flex-direction: column;
+                min-width: auto;
+            }
+
+            .horizontal-departments {
+                flex-direction: column;
+            }
+
+            .legend-items {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         /* Smooth scrolling */
@@ -825,6 +1076,50 @@
             opacity: 1;
             transform: translateX(0);
         }
+
+        /* Additional styles for ripple effect */
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -841,6 +1136,7 @@
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#organigrama">Organigrama</a></li>
                 <li><a href="#valores">Valores</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -993,7 +1289,7 @@
         </div>
     </section>
 
-    <!-- Team Section - Updated for 2 members only -->
+    <!-- Team Section -->
     <section id="equipo" class="section team">
         <div class="container">
             <h2 class="section-title">Nuestro Equipo Fundador</h2>
@@ -1035,6 +1331,204 @@
                 <p style="font-size: 1.1rem; color: #5a6c7d; line-height: 1.6;">
                     Como empresa de autogestión, ambos fundadores son también los trabajadores principales de MARIZO. Esta estructura nos permite ofrecer un servicio más personalizado y comprometido, donde cada cliente recibe la atención directa de los propietarios, garantizando la máxima calidad y responsabilidad en cada servicio.
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organigrama Section -->
+    <section id="organigrama" class="section">
+        <div class="container">
+            <h2 class="section-title">Estructura Organizacional</h2>
+            
+            <div style="text-align: center; margin-bottom: 3rem;" class="fade-in">
+                <p style="font-size: 1.1rem; color: #5a6c7d; max-width: 600px; margin: 0 auto;">
+                    Nuestra estructura organizacional refleja el modelo de autogestión, donde los fundadores lideran directamente las operaciones técnicas y administrativas.
+                </p>
+            </div>
+
+            <!-- Organigrama Vertical -->
+            <div class="orgchart-container fade-in">
+                <div class="orgchart-header">
+                    <h3>Organigrama Vertical</h3>
+                    <button class="download-btn" onclick="downloadOrgChart('vertical')">
+                        📥 Descargar Organigrama
+                    </button>
+                </div>
+                
+                <div class="orgchart vertical-chart" id="verticalChart">
+                    <!-- Dirección General -->
+                    <div class="org-level level-1">
+                        <div class="org-box director">
+                            <div class="org-title">Dirección General</div>
+                            <div class="org-name">Mauro Ricardo Franco Castelán</div>
+                            <div class="org-subtitle">Director General</div>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 2 - Gerencias -->
+                    <div class="org-level level-2">
+                        <div class="org-row">
+                            <div class="org-box admin">
+                                <div class="org-title">Gerencia Administrativa</div>
+                                <div class="org-name">Erick Ricardo Sóstenes González</div>
+                                <div class="org-subtitle">Gerente Administrativo</div>
+                            </div>
+                            
+                            <div class="org-box commercial">
+                                <div class="org-title">Gerencia Comercial</div>
+                                <div class="org-name">Erick Ricardo Sóstenes González</div>
+                                <div class="org-subtitle">Gerente Comercial</div>
+                            </div>
+                            
+                            <div class="org-box technical">
+                                <div class="org-title">Gerencia Técnica</div>
+                                <div class="org-name">Mauro Ricardo Franco Castelán</div>
+                                <div class="org-subtitle">Gerente Técnico</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 3 - Departamentos -->
+                    <div class="org-level level-3">
+                        <div class="org-row">
+                            <div class="org-box dept">
+                                <div class="org-title">Departamento de Contabilidad</div>
+                                <div class="org-subtitle">Gestión Financiera</div>
+                            </div>
+                            
+                            <div class="org-box dept">
+                                <div class="org-title">Departamento de RRHH</div>
+                                <div class="org-subtitle">Recursos Humanos</div>
+                            </div>
+                            
+                            <div class="org-box dept">
+                                <div class="org-title">Departamento de Ventas</div>
+                                <div class="org-subtitle">Comercialización</div>
+                            </div>
+                            
+                            <div class="org-box dept">
+                                <div class="org-title">Departamento de Marketing</div>
+                                <div class="org-subtitle">Promoción y Comunicación</div>
+                            </div>
+                            
+                            <div class="org-box dept">
+                                <div class="org-title">Departamento de Desarrollo</div>
+                                <div class="org-subtitle">Innovación Técnica</div>
+                            </div>
+                            
+                            <div class="org-box dept">
+                                <div class="org-title">Departamento de Soporte</div>
+                                <div class="org-subtitle">Servicio Técnico</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conexiones -->
+                    <div class="org-connections">
+                        <svg class="connection-lines">
+                            <!-- Líneas de conexión principal -->
+                            <line x1="50%" y1="120" x2="50%" y2="180" stroke="#3498db" stroke-width="2"/>
+                            
+                            <!-- Líneas horizontales nivel 2 -->
+                            <line x1="20%" y1="200" x2="80%" y2="200" stroke="#3498db" stroke-width="2"/>
+                            <line x1="33%" y1="200" x2="33%" y2="180" stroke="#3498db" stroke-width="2"/>
+                            <line x1="67%" y1="200" x2="67%" y2="180" stroke="#3498db" stroke-width="2"/>
+                            
+                            <!-- Líneas verticales a departamentos -->
+                            <line x1="33%" y1="260" x2="33%" y2="300" stroke="#3498db" stroke-width="2"/>
+                            <line x1="50%" y1="260" x2="50%" y2="300" stroke="#3498db" stroke-width="2"/>
+                            <line x1="67%" y1="260" x2="67%" y2="300" stroke="#3498db" stroke-width="2"/>
+                            
+                            <!-- Líneas horizontales departamentos -->
+                            <line x1="15%" y1="320" x2="85%" y2="320" stroke="#3498db" stroke-width="1"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Organigrama Horizontal -->
+            <div class="orgchart-container fade-in" style="margin-top: 4rem;">
+                <div class="orgchart-header">
+                    <h3>Organigrama Horizontal</h3>
+                    <button class="download-btn" onclick="downloadOrgChart('horizontal')">
+                        📥 Descargar Organigrama
+                    </button>
+                </div>
+                
+                <div class="orgchart horizontal-chart" id="horizontalChart">
+                    <div class="horizontal-row">
+                        <!-- Dirección -->
+                        <div class="horizontal-section">
+                            <div class="org-box director">
+                                <div class="org-title">Dirección General</div>
+                                <div class="org-name">Mauro Ricardo Franco Castelán</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Gerencias -->
+                        <div class="horizontal-section">
+                            <div class="horizontal-gerencias">
+                                <div class="org-box admin small">
+                                    <div class="org-title">G. Administrativa</div>
+                                    <div class="org-name">Erick R. Sóstenes G.</div>
+                                </div>
+                                <div class="org-box commercial small">
+                                    <div class="org-title">G. Comercial</div>
+                                    <div class="org-name">Erick R. Sóstenes G.</div>
+                                </div>
+                                <div class="org-box technical small">
+                                    <div class="org-title">G. Técnica</div>
+                                    <div class="org-name">Mauro R. Franco C.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Departamentos -->
+                        <div class="horizontal-section">
+                            <div class="horizontal-departments">
+                                <div class="dept-group">
+                                    <div class="org-box dept mini">Contabilidad</div>
+                                    <div class="org-box dept mini">RRHH</div>
+                                </div>
+                                <div class="dept-group">
+                                    <div class="org-box dept mini">Ventas</div>
+                                    <div class="org-box dept mini">Marketing</div>
+                                </div>
+                                <div class="dept-group">
+                                    <div class="org-box dept mini">Desarrollo</div>
+                                    <div class="org-box dept mini">Soporte</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leyenda -->
+            <div class="orgchart-legend fade-in" style="margin-top: 3rem;">
+                <h4>Leyenda del Organigrama</h4>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color director"></div>
+                        <span>Dirección General</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color admin"></div>
+                        <span>Gerencia Administrativa</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color commercial"></div>
+                        <span>Gerencia Comercial</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color technical"></div>
+                        <span>Gerencia Técnica</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color dept"></div>
+                        <span>Departamentos</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1102,7 +1596,7 @@
                         <span>📱</span>
                         <div>
                             <strong>Teléfono</strong><br>
-                            +52 775 105 5765<br>
+                            +52 775 XXX XXXX<br>
                             WhatsApp disponible
                         </div>
                     </div>
@@ -1313,35 +1807,231 @@
                 }, 600);
             });
         });
-    </script>
 
-    <style>
-        /* Additional styles for ripple effect */
-        .btn {
-            position: relative;
-            overflow: hidden;
+        // Organigrama download functionality
+        function downloadOrgChart(type) {
+            const svg = createOrgChartSVG(type);
+            const blob = new Blob([svg], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `organigrama_${type}_marizo.svg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            showDownloadNotification(type);
         }
 
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
+        function createOrgChartSVG(type) {
+            if (type === 'vertical') {
+                return `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" style="background: white;">
+                    <defs>
+                        <style>
+                            .org-text { font-family: 'Segoe UI', sans-serif; font-size: 14px; }
+                            .org-title { font-weight: bold; fill: #2c3e50; }
+                            .org-name { font-weight: 600; fill: #34495e; font-size: 12px; }
+                            .org-subtitle { fill: #7f8c8d; font-size: 10px; font-style: italic; }
+                        </style>
+                    </defs>
+                    
+                    <!-- Title -->
+                    <text x="500" y="30" class="org-text org-title" text-anchor="middle" font-size="20">Organigrama Vertical - Soluciones Digitales MARIZO</text>
+                    
+                    <!-- Director General -->
+                    <rect x="400" y="60" width="200" height="80" rx="10" fill="#fee" stroke="#e74c3c" stroke-width="3"/>
+                    <text x="500" y="80" class="org-text org-title" text-anchor="middle">Dirección General</text>
+                    <text x="500" y="100" class="org-text org-name" text-anchor="middle">Mauro Ricardo Franco Castelán</text>
+                    <text x="500" y="115" class="org-text org-subtitle" text-anchor="middle">Director General</text>
+                    
+                    <!-- Connection lines level 1 to 2 -->
+                    <line x1="500" y1="140" x2="500" y2="170" stroke="#3498db" stroke-width="2"/>
+                    <line x1="250" y1="190" x2="750" y2="190" stroke="#3498db" stroke-width="2"/>
+                    
+                    <!-- Gerencia Administrativa -->
+                    <line x1="250" y1="190" x2="250" y2="210" stroke="#3498db" stroke-width="2"/>
+                    <rect x="150" y="210" width="200" height="80" rx="10" fill="#fef9e7" stroke="#f39c12" stroke-width="3"/>
+                    <text x="250" y="230" class="org-text org-title" text-anchor="middle">Gerencia Administrativa</text>
+                    <text x="250" y="250" class="org-text org-name" text-anchor="middle">Erick Ricardo Sóstenes González</text>
+                    <text x="250" y="265" class="org-text org-subtitle" text-anchor="middle">Gerente Administrativo</text>
+                    
+                    <!-- Gerencia Comercial -->
+                    <line x1="500" y1="190" x2="500" y2="210" stroke="#3498db" stroke-width="2"/>
+                    <rect x="400" y="210" width="200" height="80" rx="10" fill="#eafaf1" stroke="#27ae60" stroke-width="3"/>
+                    <text x="500" y="230" class="org-text org-title" text-anchor="middle">Gerencia Comercial</text>
+                    <text x="500" y="250" class="org-text org-name" text-anchor="middle">Erick Ricardo Sóstenes González</text>
+                    <text x="500" y="265" class="org-text org-subtitle" text-anchor="middle">Gerente Comercial</text>
+                    
+                    <!-- Gerencia Técnica -->
+                    <line x1="750" y1="190" x2="750" y2="210" stroke="#3498db" stroke-width="2"/>
+                    <rect x="650" y="210" width="200" height="80" rx="10" fill="#ebf3fd" stroke="#3498db" stroke-width="3"/>
+                    <text x="750" y="230" class="org-text org-title" text-anchor="middle">Gerencia Técnica</text>
+                    <text x="750" y="250" class="org-text org-name" text-anchor="middle">Mauro Ricardo Franco Castelán</text>
+                    <text x="750" y="265" class="org-text org-subtitle" text-anchor="middle">Gerente Técnico</text>
+                    
+                    <!-- Connection lines level 2 to 3 -->
+                    <line x1="250" y1="290" x2="250" y2="320" stroke="#3498db" stroke-width="2"/>
+                    <line x1="500" y1="290" x2="500" y2="320" stroke="#3498db" stroke-width="2"/>
+                    <line x1="750" y1="290" x2="750" y2="320" stroke="#3498db" stroke-width="2"/>
+                    <line x1="100" y1="340" x2="900" y2="340" stroke="#3498db" stroke-width="1"/>
+                    
+                    <!-- Departamentos -->
+                    <!-- Contabilidad -->
+                    <line x1="125" y1="340" x2="125" y2="360" stroke="#3498db" stroke-width="1"/>
+                    <rect x="50" y="360" width="150" height="60" rx="8" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="125" y="380" class="org-text org-title" text-anchor="middle">Departamento de</text>
+                    <text x="125" y="395" class="org-text org-title" text-anchor="middle">Contabilidad</text>
+                    
+                    <!-- RRHH -->
+                    <line x1="275" y1="340" x2="275" y2="360" stroke="#3498db" stroke-width="1"/>
+                    <rect x="200" y="360" width="150" height="60" rx="8" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="275" y="380" class="org-text org-title" text-anchor="middle">Departamento de</text>
+                    <text x="275" y="395" class="org-text org-title" text-anchor="middle">RRHH</text>
+                    
+                    <!-- Ventas -->
+                    <line x1="425" y1="340" x2="425" y2="360" stroke="#3498db" stroke-width="1"/>
+                    <rect x="350" y="360" width="150" height="60" rx="8" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="425" y="380" class="org-text org-title" text-anchor="middle">Departamento de</text>
+                    <text x="425" y="395" class="org-text org-title" text-anchor="middle">Ventas</text>
+                    
+                    <!-- Marketing -->
+                    <line x1="575" y1="340" x2="575" y2="360" stroke="#3498db" stroke-width="1"/>
+                    <rect x="500" y="360" width="150" height="60" rx="8" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="575" y="380" class="org-text org-title" text-anchor="middle">Departamento de</text>
+                    <text x="575" y="395" class="org-text org-title" text-anchor="middle">Marketing</text>
+                    
+                    <!-- Desarrollo -->
+                    <line x1="725" y1="340" x2="725" y2="360" stroke="#3498db" stroke-width="1"/>
+                    <rect x="650" y="360" width="150" height="60" rx="8" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="725" y="380" class="org-text org-title" text-anchor="middle">Departamento de</text>
+                    <text x="725" y="395" class="org-text org-title" text-anchor="middle">Desarrollo</text>
+                    
+                    <!-- Soporte -->
+                    <line x1="875" y1="340" x2="875" y2="360" stroke="#3498db" stroke-width="1"/>
+                    <rect x="800" y="360" width="150" height="60" rx="8" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="875" y="380" class="org-text org-title" text-anchor="middle">Departamento de</text>
+                    <text x="875" y="395" class="org-text org-title" text-anchor="middle">Soporte</text>
+                    
+                    <!-- Footer -->
+                    <text x="500" y="480" class="org-text" text-anchor="middle" font-size="12" fill="#7f8c8d">Soluciones Digitales MARIZO S. de R.L. - Empresa de Autogestión</text>
+                    <text x="500" y="500" class="org-text" text-anchor="middle" font-size="10" fill="#bdc3c7">Colonia Insurgentes, Tulancingo, Hidalgo</text>
+                </svg>`;
+            } else {
+                return `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" style="background: white;">
+                    <defs>
+                        <style>
+                            .org-text { font-family: 'Segoe UI', sans-serif; font-size: 12px; }
+                            .org-title { font-weight: bold; fill: #2c3e50; }
+                            .org-name { font-weight: 600; fill: #34495e; font-size: 11px; }
+                        </style>
+                    </defs>
+                    
+                    <!-- Title -->
+                    <text x="600" y="30" class="org-text org-title" text-anchor="middle" font-size="20">Organigrama Horizontal - Soluciones Digitales MARIZO</text>
+                    
+                    <!-- Dirección General -->
+                    <rect x="50" y="100" width="180" height="80" rx="10" fill="#fee" stroke="#e74c3c" stroke-width="3"/>
+                    <text x="140" y="125" class="org-text org-title" text-anchor="middle">Dirección General</text>
+                    <text x="140" y="145" class="org-text org-name" text-anchor="middle">Mauro Ricardo</text>
+                    <text x="140" y="160" class="org-text org-name" text-anchor="middle">Franco Castelán</text>
+                    
+                    <!-- Connection line -->
+                    <line x1="230" y1="140" x2="280" y2="140" stroke="#3498db" stroke-width="3"/>
+                    
+                    <!-- Gerencias -->
+                    <!-- Gerencia Administrativa -->
+                    <rect x="280" y="60" width="160" height="60" rx="8" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+                    <text x="360" y="80" class="org-text org-title" text-anchor="middle">G. Administrativa</text>
+                    <text x="360" y="95" class="org-text org-name" text-anchor="middle">Erick R. Sóstenes G.</text>
+                    
+                    <!-- Gerencia Comercial -->
+                    <rect x="280" y="140" width="160" height="60" rx="8" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+                    <text x="360" y="160" class="org-text org-title" text-anchor="middle">G. Comercial</text>
+                    <text x="360" y="175" class="org-text org-name" text-anchor="middle">Erick R. Sóstenes G.</text>
+                    
+                    <!-- Gerencia Técnica -->
+                    <rect x="280" y="220" width="160" height="60" rx="8" fill="#ebf3fd" stroke="#3498db" stroke-width="2"/>
+                    <text x="360" y="240" class="org-text org-title" text-anchor="middle">G. Técnica</text>
+                    <text x="360" y="255" class="org-text org-name" text-anchor="middle">Mauro R. Franco C.</text>
+                    
+                    <!-- Connection lines to departments -->
+                    <line x1="440" y1="90" x2="490" y2="90" stroke="#3498db" stroke-width="2"/>
+                    <line x1="440" y1="170" x2="490" y2="170" stroke="#3498db" stroke-width="2"/>
+                    <line x1="440" y1="250" x2="490" y2="250" stroke="#3498db" stroke-width="2"/>
+                    
+                    <!-- Departamentos Administrativos -->
+                    <rect x="490" y="50" width="120" height="40" rx="6" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="550" y="75" class="org-text org-title" text-anchor="middle">Contabilidad</text>
+                    
+                    <rect x="490" y="100" width="120" height="40" rx="6" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="550" y="125" class="org-text org-title" text-anchor="middle">RRHH</text>
+                    
+                    <!-- Departamentos Comerciales -->
+                    <rect x="490" y="150" width="120" height="40" rx="6" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="550" y="175" class="org-text org-title" text-anchor="middle">Ventas</text>
+                    
+                    <rect x="490" y="200" width="120" height="40" rx="6" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="550" y="225" class="org-text org-title" text-anchor="middle">Marketing</text>
+                    
+                    <!-- Departamentos Técnicos -->
+                    <rect x="490" y="250" width="120" height="40" rx="6" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="550" y="275" class="org-text org-title" text-anchor="middle">Desarrollo</text>
+                    
+                    <rect x="490" y="300" width="120" height="40" rx="6" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="550" y="325" class="org-text org-title" text-anchor="middle">Soporte</text>
+                    
+                    <!-- Legend -->
+                    <text x="700" y="80" class="org-text org-title" font-size="14">Leyenda:</text>
+                    <rect x="700" y="100" width="20" height="15" fill="#fee" stroke="#e74c3c" stroke-width="2"/>
+                    <text x="730" y="112" class="org-text">Dirección General</text>
+                    <rect x="700" y="125" width="20" height="15" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+                    <text x="730" y="137" class="org-text">G. Administrativa</text>
+                    <rect x="700" y="150" width="20" height="15" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+                    <text x="730" y="162" class="org-text">G. Comercial</text>
+                    <rect x="700" y="175" width="20" height="15" fill="#ebf3fd" stroke="#3498db" stroke-width="2"/>
+                    <text x="730" y="187" class="org-text">G. Técnica</text>
+                    <rect x="700" y="200" width="20" height="15" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="730" y="212" class="org-text">Departamentos</text>
+                    
+                    <!-- Footer -->
+                    <text x="600" y="400" class="org-text" text-anchor="middle" font-size="12" fill="#7f8c8d">Soluciones Digitales MARIZO S. de R.L. - Empresa de Autogestión</text>
+                    <text x="600" y="420" class="org-text" text-anchor="middle" font-size="10" fill="#bdc3c7">Colonia Insurgentes, Tulancingo, Hidalgo</text>
+                </svg>`;
             }
         }
 
-        /* Loading styles */
-        body {
-            opacity: 0;
+        function showDownloadNotification(type) {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #27ae60, #2ecc71);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                    z-index: 10000;
+                    animation: slideIn 0.3s ease-out;
+                ">
+                    ✅ Organigrama ${type} descargado exitosamente
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
         }
-    </style>
+    </script>
 </body>
 </html>
